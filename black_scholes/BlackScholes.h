@@ -24,10 +24,13 @@ public:
                          const double &volatility,
                          const double &time_to_maturity);
 
-    void SetSimulationParams(int steps, int sims);
+    void SetSimulationParams(const int &steps, const int &sims);
+    void MonteCarloSimulation();
 
     double CallPriceExact();
     double PutPriceExact();
+    double CallPriceSimulation();
+    double PutPriceSimulation();
 
 
 private:
@@ -37,12 +40,15 @@ private:
     double rf;
     double sigma;
     double ttm;
-    double n_sim;
-    double n_steps;
+    int n_sim{};
+    int n_steps{};
+    double call_price = 0;
+    double put_price = 0;
 
 
     double d1();
     double d2();
+    double call_put_counter(double terminal_value);
 
 
 };
